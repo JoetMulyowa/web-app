@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UndoApprovalFixedDepositsAccountComponent } from './undo-approval-fixed-deposits-account.component';
 

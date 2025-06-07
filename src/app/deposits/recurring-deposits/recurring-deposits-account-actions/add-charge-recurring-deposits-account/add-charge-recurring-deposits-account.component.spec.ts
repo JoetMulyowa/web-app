@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddChargeRecurringDepositsAccountComponent } from './add-charge-recurring-deposits-account.component';
 
