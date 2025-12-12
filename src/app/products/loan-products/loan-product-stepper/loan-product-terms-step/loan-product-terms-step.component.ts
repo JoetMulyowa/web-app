@@ -230,12 +230,28 @@ export class LoanProductTermsStepComponent implements OnInit, OnChanges {
       allowApprovedDisbursedAmountsOverApplied: [false],
       overAppliedCalculationType: [{ value: null, disabled: true }],
       overAppliedNumber: [{ value: null, disabled: true }],
-      minInterestRatePerPeriod: [''],
+      minInterestRatePerPeriod: [
+        '',
+        [
+          Validators.min(0),
+          Validators.pattern(/^\d+([.,]\d{1,6})?$/)
+        ]
+      ],
       interestRatePerPeriod: [
         '',
-        Validators.required
+        [
+          Validators.required,
+          Validators.min(0),
+          Validators.pattern(/^\d+([.,]\d{1,6})?$/)
+        ]
       ],
-      maxInterestRatePerPeriod: [''],
+      maxInterestRatePerPeriod: [
+        '',
+        [
+          Validators.min(0),
+          Validators.pattern(/^\d+([.,]\d{1,6})?$/)
+        ]
+      ],
       interestRateFrequencyType: [
         '',
         Validators.required
@@ -487,7 +503,21 @@ export class LoanProductTermsStepComponent implements OnInit, OnChanges {
   }
 
   get loanProductTerms() {
-    return this.loanProductTermsForm.getRawValue();
+    const formValue = this.loanProductTermsForm.getRawValue();
+    // Normalize decimal separators: convert comma to dot for backend compatibility
+    const normalizeDecimal = (value: any) => {
+      if (typeof value === 'string' && value.includes(',')) {
+        return value.replace(',', '.');
+      }
+      return value;
+    };
+
+    return {
+      ...formValue,
+      minInterestRatePerPeriod: normalizeDecimal(formValue.minInterestRatePerPeriod),
+      interestRatePerPeriod: normalizeDecimal(formValue.interestRatePerPeriod),
+      maxInterestRatePerPeriod: normalizeDecimal(formValue.maxInterestRatePerPeriod)
+    };
   }
 
   isZeroInterest(): boolean {

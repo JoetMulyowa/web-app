@@ -159,9 +159,12 @@
             [min]="0"
             [attr.disabled]="isZeroInterest()"
           />
-          <mat-error>
+          <mat-error *ngIf="loanProductTermsForm.get('minInterestRatePerPeriod')?.hasError('min')">
             {{ 'labels.commons.Minimum Value must be' | translate }}
-            <strong>{{ 'labels.commons.greater equal to than 0' | translate }}</strong>
+            <strong>0</strong>
+          </mat-error>
+          <mat-error *ngIf="loanProductTermsForm.get('minInterestRatePerPeriod')?.hasError('pattern')">
+            {{ 'labels.commons.Only up to 6 decimal places allowed' | translate }}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="flex-fill flex-23">
@@ -171,12 +174,20 @@
             matInput
             formControlName="interestRatePerPeriod"
             required
+            [min]="0"
             [attr.disabled]="isZeroInterest()"
           />
-          <mat-error>
+          <mat-error *ngIf="loanProductTermsForm.get('interestRatePerPeriod')?.hasError('required')">
+            {{ 'labels.catalogs.Default' | translate }} {{ 'labels.inputs.Nominal interest rate' | translate }}
+            <span class="text-danger">{{ 'labels.commons.is required' | translate }}</span>
+          </mat-error>
+          <mat-error *ngIf="loanProductTermsForm.get('interestRatePerPeriod')?.hasError('min')">
             {{ 'labels.catalogs.Default' | translate }} {{ 'labels.inputs.Nominal interest rate' | translate }}
             {{ 'labels.commons.is' | translate }}
-            <strong>{{ 'labels.commons.required' | translate }}</strong>
+            <strong>0</strong>
+          </mat-error>
+          <mat-error *ngIf="loanProductTermsForm.get('interestRatePerPeriod')?.hasError('pattern')">
+            {{ 'labels.commons.Only up to 6 decimal places allowed' | translate }}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="flex-fill flex-23">
@@ -188,11 +199,17 @@
             [min]="0"
             [attr.disabled]="isZeroInterest()"
           />
-          <mat-error>
+          <mat-error *ngIf="loanProductTermsForm.get('maxInterestRatePerPeriod')?.hasError('min')">
+            {{ 'labels.commons.Minimum Value must be' | translate }}
+            <strong>0</strong>
+          </mat-error>
+          <mat-error *ngIf="loanProductTermsForm.errors?.['maxLessThanMin']">
             {{ 'labels.commons.Maximum Value must be' | translate }}
-            <strong>{{ 'labels.commons.greater equal to than 0' | translate }}</strong>
-            {{ 'labels.commons.and must be greater than' | translate }}
-            <strong>{{ 'labels.commons.Minimum Principal' | translate }}</strong>
+            <strong>{{ 'labels.commons.greater equal to than' | translate }}</strong>
+            {{ 'labels.inputs.Minimum' | translate }}
+          </mat-error>
+          <mat-error *ngIf="loanProductTermsForm.get('maxInterestRatePerPeriod')?.hasError('pattern')">
+            {{ 'labels.commons.Only up to 6 decimal places allowed' | translate }}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="flex-fill flex-23">
