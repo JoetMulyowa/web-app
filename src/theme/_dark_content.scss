@@ -284,35 +284,89 @@ body.dark-theme {
     background-color: rgb(255 255 255 / 8%) !important;
   }
 
+  // Documents section dark theme styling
+  mifosx-entity-documents-tab {
+    .document-card {
+      background: #2d2d2d;
+      border-color: #444;
+      box-shadow: 0 1px 4px rgb(0 0 0 / 30%);
+
+      &:hover {
+        box-shadow: 0 4px 12px rgb(0 0 0 / 50%);
+      }
+    }
+
+    .thumb {
+      background: #1a1a1a;
+    }
+
+    .preview-overlay {
+      background: rgb(45 45 45 / 95%);
+      color: #0098ff;
+    }
+
+    .placeholder {
+      color: #b0b0b0;
+
+      fa-icon {
+        color: #888;
+      }
+    }
+
+    .card-body {
+      .title {
+        color: rgb(255 255 255 / 87%);
+      }
+
+      .meta {
+        color: #aaa;
+      }
+
+      .description {
+        color: rgb(255 255 255 / 70%);
+      }
+    }
+
+    .empty-state {
+      background: #2d2d2d;
+      border-color: #555;
+      color: rgb(255 255 255 / 70%);
+
+      .muted {
+        color: #888;
+      }
+    }
+  }
+
   // Notes section dark theme styling
   mifosx-entity-notes-tab {
     .tab-container {
       h3 {
-        color: white;
+        color: rgb(255 255 255 / 87%);
       }
     }
 
     .note-card {
-      background-color: #303135;
-      border-color: #424242;
-      color: white;
+      background-color: #2d2d2d;
+      border-color: #444;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 30%);
 
       &:hover {
-        box-shadow: 0 4px 8px rgb(0 0 0 / 30%);
+        box-shadow: 0 4px 8px rgb(0 0 0 / 50%);
         border-color: #555;
       }
     }
 
     .note-content {
-      color: white;
+      color: rgb(255 255 255 / 87%);
     }
 
     .note-footer {
-      border-top-color: #424242;
+      border-top-color: #444;
     }
 
     .note-meta {
-      color: rgb(255 255 255 / 70%);
+      color: #aaa;
     }
 
     .created-by {
@@ -320,13 +374,13 @@ body.dark-theme {
     }
 
     .created-date {
-      color: rgb(255 255 255 / 60%);
+      color: #bbb;
     }
 
     .empty-state {
-      background-color: #303135;
+      background-color: #2d2d2d;
       color: rgb(255 255 255 / 70%);
-      border-color: #424242;
+      border-color: #555;
     }
   }
 
