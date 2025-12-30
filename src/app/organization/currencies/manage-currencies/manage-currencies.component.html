@@ -1,13 +1,8 @@
 <div class="container">
   <mat-card>
-    <div #currencyFormRef>
-      <form
-        #formRef="ngForm"
-        [formGroup]="currencyForm"
-        class="layout-row align-start-baseline gap-20px flex-48"
-        (ngSubmit)="addCurrency()"
-      >
-        <mat-form-field class="flex-fill flex-90-minus-20px">
+    <div #currencyFormRef class="currency-form-container">
+      <form #formRef="ngForm" [formGroup]="currencyForm" class="layout-row gap-20px" (ngSubmit)="addCurrency()">
+        <mat-form-field class="currency-search-field">
           <mat-label>{{ 'labels.inputs.Currency' | translate }}</mat-label>
           <mat-select required formControlName="currency">
             <mat-option>
@@ -30,10 +25,13 @@
         </mat-form-field>
 
         <button
+          type="button"
           mat-raised-button
-          class="flex-fill"
+          class="add-currency-button"
           color="primary"
           [disabled]="!currencyForm.valid"
+          [attr.aria-label]="'labels.buttons.Add Currency' | translate"
+          [title]="'labels.buttons.Add Currency' | translate"
           *mifosxHasPermission="'UPDATE_CURRENCY'"
         >
           <fa-icon icon="plus"></fa-icon>
@@ -47,9 +45,12 @@
           <div class="grid-container">
             <div>
               <button
+                type="button"
                 mat-button
                 color="warn"
                 (click)="deleteCurrency(currency.code, i)"
+                [attr.aria-label]="'labels.buttons.Delete' | translate"
+                [title]="'labels.buttons.Delete' | translate"
                 *mifosxHasPermission="'UPDATE_CURRENCY'"
               >
                 <fa-icon icon="trash"></fa-icon>
